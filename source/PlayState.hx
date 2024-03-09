@@ -1037,9 +1037,13 @@ class PlayState extends MusicBeatState
 
 	function bossVideo():Void
 	{
-		var video:BossVideo = new BossVideo();
-		video.finishCallback = startCountdown;
-		video.canSkip = StoryMenuState.weekPassed[Std.int(Math.min(storyWeek, StoryMenuState.weekPassed.length - 1))][storyDifficulty];
+		var video:VideoHandler = new VideoHandler();
+		video.finishCallback = function()
+		{
+			startCountdown();
+			return;
+		}
+	
 		video.playVideo(Paths.video(SONG.song.toLowerCase() + "/" + storyDifficulty));
 		FlxG.sound.playMusic(Paths.music(SONG.song.toLowerCase()), 1, false);
 	}
