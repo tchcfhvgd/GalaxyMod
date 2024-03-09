@@ -44,7 +44,6 @@ class OptionsMenu extends MusicBeatState
 			new SplashOption("enble/disable notesplashes when hitting sick."),
 			new ProgressOption("Actully words here will not be shown"),
 			new LangOption("Language, will be applied to tittle, UI, dialogue, etc"),
-			new MouseOption("The skin of the mouse"),
 			new FPSOption("Actully words here will not be shown"),
 			new ShowFPSOption("Actully words here will not be shown")
 		]));
