@@ -73,11 +73,9 @@ class Main extends Sprite
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
-		#if !mobile
 		fps = new FPSCounter(10, 3, 0xFFFFFF);
 		fps.visible = !FlxG.save.data.showFPS;
 		addChild(fps);
-		#end
 
 		FlxG.autoPause = false;
 	}
