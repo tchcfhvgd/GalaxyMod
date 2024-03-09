@@ -56,7 +56,7 @@ class TitleState extends MusicBeatState
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
-
+                FlxG.mouse.visible = false;
 		super.create();
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
