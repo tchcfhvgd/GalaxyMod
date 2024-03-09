@@ -297,59 +297,6 @@ class SplashOption extends Option
 	}
 }
 
-class MouseOption extends Option
-{
-	var names:Array<String> = ["Default", "System", "None"];
-
-	public function new(desc:String)
-	{
-		super();
-		description = desc;
-		this.acceptValues = true;
-	}
-
-	public override function press():Bool
-	{
-		if (!FlxG.save.data.mouse)
-			FlxG.save.data.mouse = 0;
-		FlxG.save.data.mouse += 1;
-		if (FlxG.save.data.mouse == names.length)
-			FlxG.save.data.mouse = 0;
-		MusicBeatState.mouseS = 0;
-		display = updateDisplay();
-		display2 = updateDisplay2();
-		return true;
-	}
-
-	public override function left():Bool
-	{
-		if (!FlxG.save.data.mouse)
-			FlxG.save.data.mouse = 0;
-		FlxG.save.data.mouse -= 1;
-		if (FlxG.save.data.mouse == -1)
-			FlxG.save.data.mouse = names.length - 1;
-		MusicBeatState.mouseS = 0;
-		display = updateDisplay();
-		display2 = updateDisplay2();
-		return true;
-	}
-
-	public override function right():Bool
-		return press();
-
-	private override function updateDisplay():String
-	{
-		return "mouse";
-	}
-
-	private override function updateDisplay2():Array<String>
-	{
-		if (!FlxG.save.data.mouse)
-			FlxG.save.data.mouse = 0;
-		return [names[FlxG.save.data.mouse]];
-	}
-}
-
 class ShowFPSOption extends Option
 {
 	public function new(desc:String)
@@ -398,7 +345,7 @@ class FPSOption extends Option
 	public override function left():Bool
 	{
 		if (!FlxG.save.data.FPS)
-			FlxG.save.data.FPS = 120;
+			FlxG.save.data.FPS = 60;
 		if (FlxG.save.data.FPS > 30)
 			FlxG.save.data.FPS -= 1;
 		display = updateDisplay();
@@ -409,7 +356,7 @@ class FPSOption extends Option
 	public override function right():Bool
 	{
 		if (!FlxG.save.data.FPS)
-			FlxG.save.data.FPS = 120;
+			FlxG.save.data.FPS = 60;
 		if (FlxG.save.data.FPS < 240)
 			FlxG.save.data.FPS += 1;
 		display = updateDisplay();
@@ -425,7 +372,7 @@ class FPSOption extends Option
 	private override function updateDisplay2():Array<String>
 	{
 		if (FlxG.save.data.FPS == null)
-			FlxG.save.data.FPS = 120;
+			FlxG.save.data.FPS = 60;
 		FlxG.updateFramerate = FlxG.save.data.FPS;
 		FlxG.drawFramerate = FlxG.save.data.FPS;
 		return [FlxG.save.data.FPS + ""];
