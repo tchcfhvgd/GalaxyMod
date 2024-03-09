@@ -124,9 +124,7 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
 		weekData[2] = ['cona', 'underworld', 'cyber'];
-		#end
 		if (FlxG.save.data.lang == 1)
 		{
 			weekNames = ["", "亞吉娜", "冥界卡莉法", "???"];
