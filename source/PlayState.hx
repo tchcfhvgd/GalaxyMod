@@ -2341,22 +2341,11 @@ class PlayState extends MusicBeatState
 			reme.end = outro2;
 
 		add(reme);
-		#if PRELOAD_ALL
-		sys.thread.Thread.create(() ->
-		{
-			reme.load();
-			if (!practice && SONG.validScore)
-			{
-				Highscore.saveScore(SONG.song, Math.round(songScore), acc, maxc, storyDifficulty, reme);
-			}
-		});
-		#else
 		if (!practice && SONG.validScore)
 		{
 			Highscore.saveScore(SONG.song, Math.round(songScore), acc, maxc, storyDifficulty, reme);
 		}
 		reme.load();
-		#end
 	}
 
 	var endingSong:Bool = false;
@@ -2375,11 +2364,12 @@ class PlayState extends MusicBeatState
 			{
 				if (storyWeek != 0)
 				{
-					if (!FlxG.save.data.trophies.contains(APIStuff.comWeek[storyWeek]))
-						FlxG.save.data.trophies.push(APIStuff.comWeek[storyWeek]);
+					//if (!FlxG.save.data.trophies.contains(APIStuff.comWeek[storyWeek]))
+						//FlxG.save.data.trophies.push(APIStuff.comWeek[storyWeek]);
 				}
 			}
 		}
+		/*
 		if (misses == 0 && bads == 0 && shits == 0 && wrongs == 0 && APIStuff.fcs.exists(SONG.song) && storyDifficulty == 2)
 		{
 			if (!FlxG.save.data.trophies.contains(APIStuff.fcs.get(SONG.song)))
@@ -2390,6 +2380,7 @@ class PlayState extends MusicBeatState
 			if (!FlxG.save.data.trophies.contains(APIStuff.comSong.get(SONG.song + "-" + storyDifficulty)))
 				FlxG.save.data.trophies.push(APIStuff.comSong.get(SONG.song + "-" + storyDifficulty));
 		}
+                */
 
 		trace(FlxG.save.data.trophies);
 		return;
