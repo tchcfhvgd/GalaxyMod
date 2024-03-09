@@ -1,5 +1,9 @@
 package;
 
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
@@ -60,6 +64,19 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
+		#if android
+		if (VERSION.SDK_INT > 30)
+			Sys.setCwd(Path.addTrailingSlash(Context.getObbDir()));
+		else
+			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+		#elseif ios
+		Sys.setCwd(System.documentsDirectory);
+		#end
+
+		#if mobile
+		Storage.copyNecessaryFiles();
+		#end
+		
 		#if !debug
 		initialState = TitleState;
 		#end
